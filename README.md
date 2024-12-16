@@ -1,9 +1,9 @@
-## Plugins
+# Plugins
 
-# Paint
+## Paint
 Used to color the objects in a blender scene. Uses a prebuild color map from obj name to specific color. Only work in the Template.blend file
 
-# Rename
+## Rename
 Renames files in a folder exported from Solidworks to reduce file name length and ensure paint plugin maps properly
 
 # perCamRender
