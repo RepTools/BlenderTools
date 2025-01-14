@@ -2,7 +2,7 @@ bl_info = {
     "name": "Remote Render Server",
     "author": "AJ Frio",
     "version": (1, 0),
-    "blender": (4, 2, 0),
+    "blender": (3, 0, 0),
     "location": "View3D > Sidebar > Remote Render Server",
     "description": "Server addon for remote rendering",
     "warning": "",
@@ -11,11 +11,9 @@ bl_info = {
 
 import bpy
 import socket
-import threading
 import tempfile
 import os
 import json
-from bpy.app.handlers import persistent
 
 class RenderServerSettings(bpy.types.PropertyGroup):
     is_running: bpy.props.BoolProperty(
@@ -53,7 +51,6 @@ class StartServerOperator(bpy.types.Operator):
     bl_idname = "render.start_server"
     bl_label = "Start Server"
     
-    _server_thread = None
     _stop_server = False
     
     def handle_client(self, client_socket):
@@ -149,37 +146,25 @@ class StartServerOperator(bpy.types.Operator):
         finally:
             client_socket.close()
     
-    def server_loop(self, context):
-        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server_socket.bind(('0.0.0.0', context.scene.render_server_settings.port))
-        server_socket.listen(5)
-        server_socket.settimeout(1)  # 1 second timeout for checking stop flag
-        
-        while not self._stop_server:
-            try:
-                client_socket, _ = server_socket.accept()
-                client_thread = threading.Thread(
-                    target=self.handle_client,
-                    args=(client_socket,)
-                )
-                client_thread.start()
-            except socket.timeout:
-                continue
-            except Exception:
-                break
-        
-        server_socket.close()
-        context.scene.render_server_settings.is_running = False
-    
     def execute(self, context):
         if not context.scene.render_server_settings.is_running:
-            self._stop_server = False
-            context.scene.render_server_settings.is_running = True
-            self._server_thread = threading.Thread(
-                target=self.server_loop,
-                args=(context,)
-            )
-            self._server_thread.start()
+            try:
+                server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                server_socket.bind(('0.0.0.0', context.scene.render_server_settings.port))
+                server_socket.listen(1)  # Only allow 1 connection at a time
+                context.scene.render_server_settings.is_running = True
+                
+                while not self._stop_server:
+                    # Accept one client at a time
+                    client_socket, _ = server_socket.accept()
+                    self.handle_client(client_socket)
+                    
+            except Exception as e:
+                self.report({'ERROR'}, f"Server error: {str(e)}")
+            finally:
+                server_socket.close()
+                context.scene.render_server_settings.is_running = False
+                
         return {'FINISHED'}
 
 class StopServerOperator(bpy.types.Operator):
