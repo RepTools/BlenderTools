@@ -57,6 +57,7 @@ class ClientHandler(threading.Thread):
         self.daemon = True
 
     def run(self):
+        print("ClientHandler started")
         try:
             # Receive file size
             file_size = int(self.client_socket.recv(1024).decode().strip())
@@ -200,7 +201,8 @@ class StartServerOperator(bpy.types.Operator):
                 self._server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self._server_socket.bind(('0.0.0.0', context.scene.render_server_settings.port))
                 self._server_socket.listen(1)
-                
+                print("Server started")
+
                 context.scene.render_server_settings.is_running = True
                 
                 wm = context.window_manager
@@ -211,6 +213,7 @@ class StartServerOperator(bpy.types.Operator):
             
             except Exception as e:
                 self.report({'ERROR'}, f"Failed to start server: {str(e)}")
+                print(f"Failed to start server: {str(e)}")
                 return {'CANCELLED'}
         
         return {'CANCELLED'}
