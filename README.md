@@ -1,15 +1,28 @@
-# Plugins
-Each of the files are standalone plugins
+## Database Paint 
+Used to color the objects in a blender scene. Uses a prebuild color map from obj name to specific color. Only work in the Template.blend file. Pulls object-color data from sqlite database in sharepoint
 
-## Paint
-Used to color the objects in a blender scene. Uses a prebuild color map from obj name to specific color. Only work in the Template.blend file
-
-## Rename
+## Rename (Plugin)
 Renames files in a folder exported from Solidworks to reduce file name length and ensure paint plugin maps properly
 
-## perCamRender (Plugin N/A for now)
+## perCamRender 
 Renders the scene from all cameras in the scene
 
-To do
-- pluginify perCamRender
-- sqlite in sharepointfor paint to append/update color map
+## Offloader (Plugin)
+(Need to Fix)
+Renders all cameras on a sperate machine running the server. Sent from the client. Returns all images
+
+## Update DB (Plugin)
+Updates the sqlite database in sharepoint with an updated color-object map
+
+## PerCamRender
+Renders the scene from all cameras in the scene
+
+## Remove Unused Materials
+Removes all unused materials from the scene
+
+## Set Origin
+Sets the origin of each object to the center of its bounding box
+
+## Decimate
+Whole bunch of different algorithms and processes to reduce the amount of vertices in the scene 
+
