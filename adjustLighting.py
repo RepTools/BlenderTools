@@ -1,6 +1,16 @@
 import bpy
 from bpy.types import Panel, Operator
 
+bl_info = {
+    "name": "Adjust Lighting",
+    "author": "BlenderTools",
+    "version": (1, 0),
+    "blender": (2, 80, 0),
+    "location": "Properties > World > Adjust Lighting",
+    "description": "Quickly adjust lighting brightness in the Setting collection",
+    "category": "Lighting",
+}
+
 # Operators for different percentage adjustments
 class LIGHT_OT_adjust_minus_50(Operator):
     bl_idname = "light.adjust_minus_50"
