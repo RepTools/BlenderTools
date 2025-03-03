@@ -1,4 +1,4 @@
-## Database Paint 
+## DBPaintV2 (Plugin)
 Used to color the objects in a blender scene. Uses a prebuild color map from obj name to specific color. Only work in the Template.blend file. Pulls object-color data from sqlite database in sharepoint
 
 ## Rename (Plugin)
@@ -17,12 +17,12 @@ Updates the sqlite database in sharepoint with an updated color-object map
 ## PerCamRender
 Renders the scene from all cameras in the scene
 
-## Remove Unused Materials
-Removes all unused materials from the scene
-
 ## Set Origin
 Sets the origin of each object to the center of its bounding box
 
 ## Decimate
 Whole bunch of different algorithms and processes to reduce the amount of vertices in the scene 
+
+## Adjust Lighting (Plugin)
+Adjusts all lighting of the scene in specific increaments
 
