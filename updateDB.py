@@ -12,8 +12,8 @@ import bpy
 import sqlite3
 import os
 
-simpleMats = {"plastic": 19, "silverHardware": 6, "blackHardware": 13, "chrome": 15, "permBlack": 13, "permMat": 17, "pulleys": 6, "rubber": 17, "cloth": 10}
-complexMats = {"plastic": 11, "silverHardware": 6, "blackHardware": 9, "chrome": 3, "permBlack": 9, "permMat": 10, "pulleys": 5, "rubber": 11, "cloth": 10}
+simpleMats = {"plastic": 19, "silverHardware": 6, "blackHardware": 13, "chrome": 15, "permBlack": 13, "permMat": 17, "pulleys": 6, "rubber": 17, "cloth": 10, "UC": "UC"}
+complexMats = {"plastic": 11, "silverHardware": 6, "blackHardware": 9, "chrome": 3, "permBlack": 9, "permMat": 10, "pulleys": 5, "rubber": 11, "cloth": 10, "UC": "UC"}
 
 # Add this enum items list for the dropdown
 color_items = [
