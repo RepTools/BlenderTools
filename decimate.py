@@ -7,8 +7,8 @@ import bpy
 
 col = "Model"
 
-bolts = ['10-0030', '10-0025', '10-0475', '10-0476', '10-0232', '10-0550', '10-0208', '10-0133', '10-0620', '10-0033', '10-0341', '10-0620']
-washers_nuts = ['10-0026', '10-0310', '10-0315', '10-0104', '10-0078', '10-0020', '10-0037', '10-0421', '10-0233']
+bolts = ['10-0030', '10-0025', '10-0475', '10-0476', '10-0232', '10-0550', '10-0208', '10-0133', '10-0620', '10-0033', '10-0341', '10-0620', '10-0314']
+washers_nuts = ['10-0026', '10-0310', '10-0315', '10-0104', '10-0078', '10-0020', '10-0037', '10-0421', '10-0233', '10-0164', '10-0072']
 rectangles = ['15-1103', '15-0384']
 cylinders = ['15-1068', '15-1077', '15-1078', '10-0166', '10-0526', '15-1044', '20-0055', '15-0839', '20-0056', '15-0548', '15-1213', '15-1211', '15-1212', '15-1247']
 pulleys = ['10-0017', '10-0371']
@@ -188,7 +188,7 @@ def swap_cylinders(obj):
 
 def swap_pulleys(obj):
     '''
-    Automatically creates a primative replica of a cylinder. Used for pulleys.Inverse of cylinder, Largest bounding box dimension is the diameter
+    Automatically creates a primative replica of a cylinder. Used for pulleys. Inverse of cylinder, Largest bounding box dimension is the diameter
     '''
     if obj.name.split(" ")[0] in pulleys:
         debug(f"Swapping cylinder {obj.name} -----------------")
@@ -249,10 +249,11 @@ def swap_pulleys(obj):
 
 def swap_bolts(obj):
     try:
-        name, id = obj.name.split(" ")
+        name = obj.name.split(" ")[0]
+        id = obj.name.split(" ")[1]
         if name in bolts:
                 debug(f"Swapping {obj.name} -----------------")
-                delete_list.append(obj.name)
+                delete_list.append(obj.name.split(" ")[0])
                 # Get local bounding box coordinates
                 min_x, max_x, min_y, max_y, min_z, max_z = get_bounding_box(obj)
 

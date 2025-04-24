@@ -56,10 +56,11 @@ class PAINT_OT_db_paint(bpy.types.Operator):
                     try:
                         if index == 'UC':
                             color = cursor.execute("SELECT * FROM color_indices WHERE color = ?", (color_name,)).fetchone()
-                            if color is None or len(color) < 2:  # Check if color is None or doesn't have enough elements
+                            if color is None or len(color) < 3:  # Check if color is None or doesn't have enough elements
                                 obj.data.materials.append(bpy.data.materials[0])
                             else:
-                                obj.data.materials.append(bpy.data.materials[color[1]])
+                                material_index = color[1] if paint_type == 'lowq' else color[2]
+                                obj.data.materials.append(bpy.data.materials[material_index])
                         else:
                             obj.data.materials.append(bpy.data.materials[index])
                     except:
@@ -135,4 +136,5 @@ def unregister():
     del bpy.types.Scene.paint_color
 
 if __name__ == "__main__":
-    register() 
+    register()
+    
