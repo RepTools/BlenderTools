@@ -23,3 +23,4 @@ Whole bunch of different algorithms and processes to reduce the amount of vertic
 ## Adjust Lighting (Plugin)
 Adjusts all lighting of the scene in specific increaments
 
+Decimate lists need to get moved to the paint.db, add a plugin to add to decimate, start decimate

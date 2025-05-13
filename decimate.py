@@ -104,7 +104,7 @@ def apply_all_modifiers(obj):
 
 def swap_rectangles(obj):
     '''
-    Automatically creates a primative replica of a cuboid. Used for weight plates
+    Automatically creates a primative replica of a cuboid. Used for weight plates, frame type things
     '''
     if obj.name.split(" ")[0] in rectangles:
         debug(f"Swapping {obj.name} -----------------")
