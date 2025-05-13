@@ -14,9 +14,6 @@ Renders all cameras on a sperate machine running the server. Sent from the clien
 ## Update DB (Plugin)
 Updates the sqlite database in sharepoint with an updated color-object map
 
-## PerCamRender
-Renders the scene from all cameras in the scene
-
 ## Set Origin
 Sets the origin of each object to the center of its bounding box
 

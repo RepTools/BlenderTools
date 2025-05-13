@@ -122,7 +122,7 @@ def register():
             ('MAT', "Mat", "Mat paint"),
             ('CLEAR', "Clear Coat", "Clear coat"),
         ],
-        default='RED'
+        default='BLACK'
     )
     
     bpy.utils.register_class(PAINT_OT_db_paint)
