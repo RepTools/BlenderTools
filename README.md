@@ -23,4 +23,7 @@ Whole bunch of different algorithms and processes to reduce the amount of vertic
 ## Adjust Lighting (Plugin)
 Adjusts all lighting of the scene in specific increaments
 
+## Plane Builder (Plugin)
+Creates a plane with dimensions converted from feet to Blender units. Accessible from the sidebar in the 3D View
+
 Decimate lists need to get moved to the paint.db, add a plugin to add to decimate, start decimate
