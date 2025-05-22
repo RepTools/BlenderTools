@@ -2,7 +2,7 @@ bl_info = {
     "name": "Remote Render Server",
     "author": "AJ Frio",
     "version": (1, 0),
-    "blender": (3, 0, 0),
+    "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Remote Render Server",
     "description": "Server addon for remote rendering",
     "warning": "",

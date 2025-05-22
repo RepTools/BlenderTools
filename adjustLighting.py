@@ -3,9 +3,9 @@ from bpy.types import Panel, Operator
 
 bl_info = {
     "name": "Adjust Lighting",
-    "author": "BlenderTools",
+    "author": "AJ Frio",
     "version": (1, 0),
-    "blender": (2, 80, 0),
+    "blender": (4, 2, 0),
     "location": "Properties > World > Adjust Lighting",
     "description": "Quickly adjust lighting brightness in the Setting collection",
     "category": "Lighting",

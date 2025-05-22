@@ -41,6 +41,6 @@ This project consists of two Blender addons that enable distributed rendering be
 - The server can handle multiple clients sequentially
 
 ## Requirements
-- Blender 3.0 or newer on both computers
+- Blender 4.0 or newer on both computers
 - Network connectivity between client and server
 - Sufficient storage space for temporary files 
