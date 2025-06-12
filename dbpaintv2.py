@@ -13,11 +13,26 @@ import sqlite3
 import os
 
 def find_path():
+    # First try the current format
     end = 'OneDrive - Rep Fitness/Documents - Product and Engineering/Internal Docs/ID Team/paint.db'
     start = os.path.dirname(os.path.realpath(__file__))
     start = start.split('\\')
     first = '\\'.join(start[:3])
     path = first + '\\' + end
+    
+    # Check if the file exists
+    if os.path.exists(path):
+        return path
+    
+    # If not found, try alternative path format
+    alt_end = 'Rep Fitness\\Product and Engineering - Documents\\Internal Docs\\ID Team\\paint.db'
+    alt_path = first + '\\' + alt_end
+    
+    # Check if alternative path exists
+    if os.path.exists(alt_path):
+        return alt_path
+    
+    # Return the original path as fallback
     return path
 
 class PAINT_OT_db_paint(bpy.types.Operator):
