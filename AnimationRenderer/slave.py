@@ -42,6 +42,16 @@ class MessageProtocol:
         header = dict(header)
         header["bin_size"] = payload_size
         header_bytes = json.dumps(header).encode("utf-8")
+        try:
+            peer = "unknown"
+            try:
+                host, port = sock.getpeername()
+                peer = f"{host}:{port}"
+            except Exception:
+                pass
+            _safe_log(f"TX to {peer}: {header.get('type')} bin={payload_size}")
+        except Exception:
+            pass
         sock.sendall(struct.pack("!I", len(header_bytes)))
         sock.sendall(header_bytes)
         if payload_size:
@@ -67,6 +77,16 @@ class MessageProtocol:
             return None
         header = json.loads(header_bytes.decode("utf-8"))
         bin_size = int(header.get("bin_size", 0))
+        try:
+            peer = "unknown"
+            try:
+                host, port = sock.getpeername()
+                peer = f"{host}:{port}"
+            except Exception:
+                pass
+            _safe_log(f"RX from {peer}: {header.get('type')} bin={bin_size}")
+        except Exception:
+            pass
         binary = None
         if bin_size:
             binary = recvn(bin_size)
@@ -171,7 +191,14 @@ def _client_loop(master_ip: str) -> None:
     sock.settimeout(2.0)
     try:
         MessageProtocol.send(sock, {"type": "hello", **SLAVE_STATE.identity})
-        hello = MessageProtocol.recv(sock)
+        hello = None
+        while not SLAVE_STATE.stop_event.is_set():
+            try:
+                hello = MessageProtocol.recv(sock)
+                if hello is not None:
+                    break
+            except (socket.timeout, TimeoutError):
+                continue
         if not hello:
             _safe_log("No hello ack from master")
             return
@@ -180,7 +207,10 @@ def _client_loop(master_ip: str) -> None:
             SLAVE_STATE.connected = True
 
         while not SLAVE_STATE.stop_event.is_set():
-            msg = MessageProtocol.recv(sock)
+            try:
+                msg = MessageProtocol.recv(sock)
+            except (socket.timeout, TimeoutError):
+                continue
             if msg is None:
                 break
             header, binary = msg
@@ -230,6 +260,7 @@ def _handle_job_init(header: dict, binary: Optional[bytes], sock: socket.socket)
         SLAVE_STATE.temp_blend_path = blend_path
         SLAVE_STATE.job_active = True
         SLAVE_STATE.render_format = str(header.get("format", "PNG"))
+    _safe_log(f"Job init received: frames {header.get('frame_start')}..{header.get('frame_end')} step {header.get('frame_step')} format {SLAVE_STATE.render_format}")
     MessageProtocol.send(sock, {"type": "ready"})
 
 
@@ -243,6 +274,7 @@ def _render_frame_and_send(sock: socket.socket, frame: int) -> None:
     blender_bin = bpy.app.binary_path
     out_dir = _ensure_temp_dir()
     out_pattern = os.path.join(out_dir, "frame_#####")
+    _safe_log(f"Rendering frame {frame} using {fmt} ...")
     cmd = [
         blender_bin,
         "-b",
@@ -255,7 +287,10 @@ def _render_frame_and_send(sock: socket.socket, frame: int) -> None:
         str(frame),
     ]
     try:
-        subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        t0 = time.time()
+        proc = subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        dt = time.time() - t0
+        _safe_log(f"Rendered frame {frame} in {dt:0.1f}s, stdout {len(proc.stdout)}B")
     except Exception as exc:
         MessageProtocol.send(sock, {"type": "log", "text": f"Render failed for frame {frame}: {exc}"})
         return
@@ -271,6 +306,7 @@ def _render_frame_and_send(sock: socket.socket, frame: int) -> None:
     try:
         with open(fpath, "rb") as f:
             data = f.read()
+        _safe_log(f"Sending frame {frame} ({len(data)} bytes)")
         MessageProtocol.send(sock, {"type": "frame_result", "frame": frame, "ext": ext}, data)
         MessageProtocol.send(sock, {"type": "ready"})
     except Exception as exc:

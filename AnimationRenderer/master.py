@@ -49,6 +49,16 @@ class MessageProtocol:
             header = dict(header)
             header["bin_size"] = payload_size
             header_bytes = json.dumps(header).encode("utf-8")
+            try:
+                peer = "unknown"
+                try:
+                    host, port = sock.getpeername()
+                    peer = f"{host}:{port}"
+                except Exception:
+                    pass
+                _safe_log(f"TX to {peer}: {header.get('type')} bin={payload_size}")
+            except Exception:
+                pass
             sock.sendall(struct.pack("!I", len(header_bytes)))
             sock.sendall(header_bytes)
             if payload_size:
@@ -76,6 +86,16 @@ class MessageProtocol:
             return None
         header = json.loads(header_bytes.decode("utf-8"))
         bin_size = int(header.get("bin_size", 0))
+        try:
+            peer = "unknown"
+            try:
+                host, port = sock.getpeername()
+                peer = f"{host}:{port}"
+            except Exception:
+                pass
+            _safe_log(f"RX from {peer}: {header.get('type')} bin={bin_size}")
+        except Exception:
+            pass
         binary = None
         if bin_size:
             binary = recvn(bin_size)
@@ -226,6 +246,7 @@ class SlaveConnection(threading.Thread):
 
     def run(self) -> None:
         try:
+            _safe_log(f"Accepted connection from {self.address}")
             while not self.stop_event.is_set():
                 msg = MessageProtocol.recv(self.conn)
                 if msg is None:
@@ -237,6 +258,7 @@ class SlaveConnection(threading.Thread):
                     sname = str(header.get("name", sid))
                     self.identify(sid, sname)
                     MessageProtocol.send(self.conn, {"type": "hello_ack"})
+                    _safe_log(f"Handshake complete with {sname} ({sid}) @ {self.address}")
                     if MASTER_STATE.job_active and MASTER_STATE.temp_blend_path:
                         try:
                             with open(MASTER_STATE.temp_blend_path, "rb") as f:
@@ -247,11 +269,13 @@ class SlaveConnection(threading.Thread):
                         except Exception as exc:
                             _safe_log(f"Failed to init new slave: {exc}")
                 elif mtype == "ready":
+                    _safe_log(f"Slave {self.slave_name or self.address} ready; assigning next frame")
                     self._assign_next_frame()
                 elif mtype == "frame_result":
                     frame = int(header.get("frame"))
                     ext = str(header.get("ext", "png"))
                     size = int(header.get("bin_size", 0))
+                    _safe_log(f"Received frame {frame} ({size} bytes, .{ext}) from {self.slave_name or self.address}")
                     if binary and size == len(binary):
                         self._store_frame(frame, ext, binary)
                         with MASTER_STATE.lock:
@@ -263,6 +287,7 @@ class SlaveConnection(threading.Thread):
                     text = str(header.get("text", ""))
                     _safe_log(f"Slave {self.slave_name or self.address} log: {text}")
                 elif mtype == "bye":
+                    _safe_log(f"Slave {self.slave_name or self.address} disconnected")
                     break
         except Exception as exc:
             _safe_log(f"Slave connection error: {exc}")
@@ -292,6 +317,7 @@ class SlaveConnection(threading.Thread):
             if self.slave_id:
                 MASTER_STATE.frames_in_progress[self.slave_id] = frame
         try:
+            _safe_log(f"Assigning frame {frame} to {self.slave_name or self.address}")
             MessageProtocol.send(self.conn, {"type": "assign", "frame": frame})
         except Exception as exc:
             _safe_log(f"Failed to assign frame {frame}: {exc}")
@@ -461,11 +487,13 @@ def _start_job_distribution() -> None:
         MASTER_STATE.frame_queue.put(int(fr))
     MASTER_STATE.total_frames = len(frames)
     MASTER_STATE.frames_done = 0
+    _safe_log(f"Job {MASTER_STATE.job_id} frames: {frames[:3]}... total={MASTER_STATE.total_frames}")
 
     for conn in list(MASTER_STATE.connections.values()):
         try:
             header = _build_job_init_header(blend_bytes)
             MessageProtocol.send(conn.conn, header, blend_bytes)
+            _safe_log(f"Sent job init to {conn.address} ({len(blend_bytes)} bytes)")
         except Exception as exc:
             _safe_log(f"Failed to send job to {conn.address}: {exc}")
 
