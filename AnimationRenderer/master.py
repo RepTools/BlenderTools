@@ -570,7 +570,7 @@ class AR_PT_MasterPanel(bpy.types.Panel):
         row.operator(AR_OT_MasterStart.bl_idname, icon="RENDER_ANIMATION")
         row.operator(AR_OT_MasterCancel.bl_idname, icon="CANCEL")
         layout.separator()
-        layout.template_progress_bar(fraction, text=f"{int(done)}/{int(total)} frames")
+        layout.label(text=f"Frames: {int(done)}/{int(total)}")
         layout.label(text=props.status_text)
 
 
