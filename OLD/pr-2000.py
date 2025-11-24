@@ -331,8 +331,12 @@ def render_all_configs(output_path):
     scene = bpy.context.scene
     render = scene.render
     
-    # Make sure output format is PNG
+    # Make sure output format is PNG with alpha (transparency)
     render.image_settings.file_format = 'PNG'
+    render.image_settings.color_mode = 'RGBA'  # Include alpha channel for transparency
+    
+    # Enable film transparency so holdout objects create transparent areas
+    scene.render.film_transparent = True
     
     # Ensure output path exists
     os.makedirs(output_path, exist_ok=True)
