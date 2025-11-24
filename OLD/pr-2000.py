@@ -154,11 +154,31 @@ def set_collection_visibility(collection, visible, render_visible=True):
             set_collection_visibility(child_coll, visible, render_visible)
 
 
+def get_object_collections(obj):
+    """Get all collections that contain this object."""
+    collections = []
+    for coll in bpy.data.collections:
+        if obj.name in coll.objects:
+            collections.append(coll)
+    return collections
+
+
 def set_object_visibility(obj, visible, render_visible=True):
-    """Set object visibility for viewport and render."""
+    """Set object visibility for viewport and render.
+    If making visible, also ensures parent collections are not excluded."""
     if obj:
         obj.hide_viewport = not visible
         obj.hide_render = not render_visible
+        
+        # If we're making the object visible, ensure its parent collections are also visible
+        if visible:
+            for coll in get_object_collections(obj):
+                coll.hide_viewport = False
+                coll.hide_render = False
+                # Also un-exclude from view layer
+                layer_coll = get_view_layer_collection(coll)
+                if layer_coll:
+                    layer_coll.exclude = False
 
 
 def set_holdout_property(collection_or_object, holdout_enabled):
@@ -183,6 +203,23 @@ def set_holdout_property(collection_or_object, holdout_enabled):
         set_obj_holdout(collection_or_object)
 
 
+def get_all_objects_in_collection(collection):
+    """Recursively get ALL objects in a collection and all its child collections."""
+    objects = []
+    if not collection:
+        return objects
+    
+    # Get direct objects
+    for obj in collection.objects:
+        objects.append(obj)
+    
+    # Recursively get objects from child collections
+    for child_coll in collection.children:
+        objects.extend(get_all_objects_in_collection(child_coll))
+    
+    return objects
+
+
 def hide_all_in_collection(parent_collection):
     """Recursively hide ALL collections and objects within a parent collection."""
     if not parent_collection:
@@ -197,6 +234,12 @@ def hide_all_in_collection(parent_collection):
     
     # Hide all direct objects in this collection
     for obj in parent_collection.objects:
+        set_object_visibility(obj, False)
+        set_holdout_property(obj, False)
+    
+    # Also get ALL objects recursively and hide them (belt and suspenders approach)
+    all_objects = get_all_objects_in_collection(parent_collection)
+    for obj in all_objects:
         set_object_visibility(obj, False)
         set_holdout_property(obj, False)
 
@@ -222,6 +265,12 @@ def setup_render_config(config):
     model_collection = bpy.data.collections.get("Model")
     if model_collection:
         hide_all_in_collection(model_collection)
+        # Explicitly hide all objects in Model collection
+        all_model_objects = get_all_objects_in_collection(model_collection)
+        for obj in all_model_objects:
+            set_object_visibility(obj, False)
+            set_holdout_property(obj, False)
+            print(f"    Hidden model: {obj.name}")
     
     # Backup: Hide all rack collections by name from predefined list
     for coll_name in ALL_RACK_COLLECTIONS:
@@ -236,6 +285,7 @@ def setup_render_config(config):
         if obj:
             set_object_visibility(obj, False)
             set_holdout_property(obj, False)
+            print(f"    Hidden model (by name): {model_name}")
     
     print(f"  Now showing only: {', '.join(visible_items)}")
     
