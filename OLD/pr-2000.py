@@ -131,15 +131,16 @@ def get_view_layer_collection(collection, view_layer=None):
     return find_layer_collection(view_layer.layer_collection, collection)
 
 
-def set_collection_visibility(collection, visible, render_visible=True):
+def set_collection_visibility(collection, visible):
     """Set collection visibility for viewport and render.
     Also recursively sets visibility on all objects in the collection."""
     if collection:
         # Set collection-level visibility (this is what controls rendering)
         collection.hide_viewport = not visible
-        collection.hide_render = not render_visible
+        collection.hide_render = not visible  # Always match viewport visibility
         
         # Also set the view layer exclude property (the checkbox in outliner)
+        # This is the most important one for hiding from renders!
         layer_coll = get_view_layer_collection(collection)
         if layer_coll:
             layer_coll.exclude = not visible
@@ -147,11 +148,11 @@ def set_collection_visibility(collection, visible, render_visible=True):
         # Also set visibility on all objects in the collection
         for obj in collection.objects:
             obj.hide_viewport = not visible
-            obj.hide_render = not render_visible
+            obj.hide_render = not visible  # Always match viewport visibility
         
         # Recursively handle child collections
         for child_coll in collection.children:
-            set_collection_visibility(child_coll, visible, render_visible)
+            set_collection_visibility(child_coll, visible)
 
 
 def get_object_collections(obj):
@@ -163,16 +164,18 @@ def get_object_collections(obj):
     return collections
 
 
-def set_object_visibility(obj, visible, render_visible=True):
+def set_object_visibility(obj, visible):
     """Set object visibility for viewport and render.
     If making visible, also ensures parent collections are not excluded."""
     if obj:
         obj.hide_viewport = not visible
-        obj.hide_render = not render_visible
+        obj.hide_render = not visible  # Always match viewport visibility
         
         # If we're making the object visible, ensure its parent collections are also visible
+        # BUT only un-exclude the immediate parent collection, not all of them
         if visible:
             for coll in get_object_collections(obj):
+                # Un-hide the collection but DON'T change other collections
                 coll.hide_viewport = False
                 coll.hide_render = False
                 # Also un-exclude from view layer
@@ -220,27 +223,35 @@ def get_all_objects_in_collection(collection):
     return objects
 
 
-def hide_all_in_collection(parent_collection):
-    """Recursively hide ALL collections and objects within a parent collection."""
+def hide_all_in_collection(parent_collection, hide_parent=False):
+    """Recursively hide ALL collections and objects within a parent collection.
+    If hide_parent=True, also hides the parent collection itself."""
     if not parent_collection:
         return
+    
+    # Optionally hide the parent collection itself
+    if hide_parent:
+        set_collection_visibility(parent_collection, False)
+        set_holdout_property(parent_collection, False)
     
     # Hide all direct child collections
     for coll in parent_collection.children:
         set_collection_visibility(coll, False)
         set_holdout_property(coll, False)
         # Recursively hide children (already handled by set_collection_visibility, but be thorough)
-        hide_all_in_collection(coll)
+        hide_all_in_collection(coll, hide_parent=False)
     
     # Hide all direct objects in this collection
     for obj in parent_collection.objects:
-        set_object_visibility(obj, False)
+        obj.hide_viewport = True
+        obj.hide_render = True
         set_holdout_property(obj, False)
     
     # Also get ALL objects recursively and hide them (belt and suspenders approach)
     all_objects = get_all_objects_in_collection(parent_collection)
     for obj in all_objects:
-        set_object_visibility(obj, False)
+        obj.hide_viewport = True
+        obj.hide_render = True
         set_holdout_property(obj, False)
 
 
@@ -261,14 +272,27 @@ def setup_render_config(config):
     else:
         print(f"  Warning: 'Racks' collection not found!")
     
-    # Also hide everything in the Model collection
+    # Also hide everything in the Model collection (including the collection itself)
     model_collection = bpy.data.collections.get("Model")
     if model_collection:
-        hide_all_in_collection(model_collection)
+        # First, exclude the Model collection from the view layer
+        model_layer_coll = get_view_layer_collection(model_collection)
+        if model_layer_coll:
+            model_layer_coll.exclude = True
+            print(f"    Excluded Model collection from view layer")
+        
+        # Hide the collection itself
+        model_collection.hide_viewport = True
+        model_collection.hide_render = True
+        
+        # Hide all contents
+        hide_all_in_collection(model_collection, hide_parent=True)
+        
         # Explicitly hide all objects in Model collection
         all_model_objects = get_all_objects_in_collection(model_collection)
         for obj in all_model_objects:
-            set_object_visibility(obj, False)
+            obj.hide_viewport = True
+            obj.hide_render = True
             set_holdout_property(obj, False)
             print(f"    Hidden model: {obj.name}")
     
@@ -281,11 +305,14 @@ def setup_render_config(config):
     
     # Backup: Hide all models by name from predefined list
     for model_name in ALL_MODELS:
-        obj = get_object(model_name)
+        obj = bpy.data.objects.get(model_name)  # Direct lookup
         if obj:
-            set_object_visibility(obj, False)
+            obj.hide_viewport = True
+            obj.hide_render = True
             set_holdout_property(obj, False)
             print(f"    Hidden model (by name): {model_name}")
+        else:
+            print(f"    Warning: Model '{model_name}' not found in bpy.data.objects")
     
     print(f"  Now showing only: {', '.join(visible_items)}")
     
@@ -324,6 +351,17 @@ def setup_render_config(config):
                 print(f"    Showing object as holdout: {item_name}")
             else:
                 print(f"  Warning: Holdout item '{item_name}' not found (neither collection nor object)")
+    
+    # FOURTH: Final verification - hide any models NOT in the include list
+    # This ensures models stay hidden even if their parent collection was un-excluded
+    print(f"  Final verification - ensuring unwanted models are hidden...")
+    for model_name in ALL_MODELS:
+        if model_name not in visible_items:
+            obj = bpy.data.objects.get(model_name)
+            if obj:
+                obj.hide_viewport = True
+                obj.hide_render = True
+                print(f"    Force hidden: {model_name}")
 
 
 def render_all_configs(output_path):
