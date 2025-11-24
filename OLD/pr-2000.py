@@ -113,11 +113,41 @@ def get_object(name):
     
     return None
 
+def find_layer_collection(layer_collection, target_collection):
+    """Recursively find a layer collection that matches the target collection."""
+    if layer_collection.collection == target_collection:
+        return layer_collection
+    for child in layer_collection.children:
+        result = find_layer_collection(child, target_collection)
+        if result:
+            return result
+    return None
+
+
 def set_collection_visibility(collection, visible, render_visible=True):
-    """Set collection visibility for viewport and render."""
+    """Set collection visibility for viewport and render.
+    Also recursively sets visibility on all objects in the collection.
+    Handles both collection properties and view layer instances."""
     if collection:
+        # Set collection-level visibility
         collection.hide_viewport = not visible
         collection.hide_render = not render_visible
+        
+        # Also set visibility in view layers (important for rendering)
+        for view_layer in bpy.context.scene.view_layers:
+            layer_collection = find_layer_collection(view_layer.layer_collection, collection)
+            if layer_collection:
+                layer_collection.hide_viewport = not visible
+                layer_collection.hide_render = not render_visible
+        
+        # Also set visibility on all objects in the collection
+        for obj in collection.objects:
+            obj.hide_viewport = not visible
+            obj.hide_render = not render_visible
+        
+        # Recursively handle child collections
+        for child_coll in collection.children:
+            set_collection_visibility(child_coll, visible, render_visible)
 
 
 def set_object_visibility(obj, visible, render_visible=True):
@@ -157,15 +187,23 @@ def setup_render_config(config):
     # Get all items that should be visible (include + holdout)
     visible_items = set(include_items) | set(holdout_items)
     
-    # Hide all rack collections first
+    # First, hide ALL rack collections and their objects
+    racks_collection = bpy.data.collections.get("Racks")
+    if racks_collection:
+        for coll in racks_collection.children:
+            should_be_visible = coll.name in visible_items
+            set_collection_visibility(coll, should_be_visible)
+            # Reset holdout for all collections
+            set_holdout_property(coll, False)
+    
+    # Hide all rack collections by name (backup method)
     for coll_name in ALL_RACK_COLLECTIONS:
         collection = get_collection(coll_name)
         if collection:
-            set_collection_visibility(collection, coll_name in visible_items)
+            should_be_visible = coll_name in visible_items
+            set_collection_visibility(collection, should_be_visible)
             # Reset holdout for all collections
             set_holdout_property(collection, False)
-        else:
-            print(f"  Warning: Collection '{coll_name}' not found")
     
     # Hide all models first
     for model_name in ALL_MODELS:
@@ -177,7 +215,7 @@ def setup_render_config(config):
         else:
             print(f"  Warning: Model '{model_name}' not found")
     
-    # Set visibility for included items
+    # Set visibility for included items (make sure they're visible)
     for item_name in include_items:
         # Try as collection first
         collection = get_collection(item_name)
