@@ -113,6 +113,24 @@ def get_object(name):
     
     return None
 
+def get_view_layer_collection(collection, view_layer=None):
+    """Get the view layer collection for a given collection.
+    This is needed to set the exclude property."""
+    if view_layer is None:
+        view_layer = bpy.context.view_layer
+    
+    def find_layer_collection(layer_coll, target_coll):
+        if layer_coll.collection == target_coll:
+            return layer_coll
+        for child in layer_coll.children:
+            result = find_layer_collection(child, target_coll)
+            if result:
+                return result
+        return None
+    
+    return find_layer_collection(view_layer.layer_collection, collection)
+
+
 def set_collection_visibility(collection, visible, render_visible=True):
     """Set collection visibility for viewport and render.
     Also recursively sets visibility on all objects in the collection."""
@@ -120,6 +138,11 @@ def set_collection_visibility(collection, visible, render_visible=True):
         # Set collection-level visibility (this is what controls rendering)
         collection.hide_viewport = not visible
         collection.hide_render = not render_visible
+        
+        # Also set the view layer exclude property (the checkbox in outliner)
+        layer_coll = get_view_layer_collection(collection)
+        if layer_coll:
+            layer_coll.exclude = not visible
         
         # Also set visibility on all objects in the collection
         for obj in collection.objects:
@@ -160,6 +183,24 @@ def set_holdout_property(collection_or_object, holdout_enabled):
         set_obj_holdout(collection_or_object)
 
 
+def hide_all_in_collection(parent_collection):
+    """Recursively hide ALL collections and objects within a parent collection."""
+    if not parent_collection:
+        return
+    
+    # Hide all direct child collections
+    for coll in parent_collection.children:
+        set_collection_visibility(coll, False)
+        set_holdout_property(coll, False)
+        # Recursively hide children (already handled by set_collection_visibility, but be thorough)
+        hide_all_in_collection(coll)
+    
+    # Hide all direct objects in this collection
+    for obj in parent_collection.objects:
+        set_object_visibility(obj, False)
+        set_holdout_property(obj, False)
+
+
 def setup_render_config(config):
     """Configure the scene for a specific render configuration."""
     include_items = config["include"]
@@ -168,61 +209,69 @@ def setup_render_config(config):
     # Get all items that should be visible (include + holdout)
     visible_items = set(include_items) | set(holdout_items)
     
-    # First, hide ALL rack collections and their objects
+    print(f"  Hiding all collections first...")
+    
+    # FIRST: Hide EVERYTHING in the Racks collection (all children, recursively)
     racks_collection = bpy.data.collections.get("Racks")
     if racks_collection:
-        for coll in racks_collection.children:
-            should_be_visible = coll.name in visible_items
-            set_collection_visibility(coll, should_be_visible)
-            # Reset holdout for all collections
-            set_holdout_property(coll, False)
+        hide_all_in_collection(racks_collection)
+    else:
+        print(f"  Warning: 'Racks' collection not found!")
     
-    # Hide all rack collections by name (backup method)
+    # Also hide everything in the Model collection
+    model_collection = bpy.data.collections.get("Model")
+    if model_collection:
+        hide_all_in_collection(model_collection)
+    
+    # Backup: Hide all rack collections by name from predefined list
     for coll_name in ALL_RACK_COLLECTIONS:
         collection = get_collection(coll_name)
         if collection:
-            should_be_visible = coll_name in visible_items
-            set_collection_visibility(collection, should_be_visible)
-            # Reset holdout for all collections
+            set_collection_visibility(collection, False)
             set_holdout_property(collection, False)
     
-    # Hide all models first
+    # Backup: Hide all models by name from predefined list
     for model_name in ALL_MODELS:
         obj = get_object(model_name)
         if obj:
-            set_object_visibility(obj, model_name in visible_items)
-            # Reset holdout for all models
+            set_object_visibility(obj, False)
             set_holdout_property(obj, False)
-        else:
-            print(f"  Warning: Model '{model_name}' not found")
     
-    # Set visibility for included items (make sure they're visible)
+    print(f"  Now showing only: {', '.join(visible_items)}")
+    
+    # SECOND: Show ONLY items that are explicitly in include list
     for item_name in include_items:
         # Try as collection first
         collection = get_collection(item_name)
         if collection:
             set_collection_visibility(collection, True)
+            set_holdout_property(collection, False)  # Make sure holdout is off for included items
+            print(f"    Showing collection: {item_name}")
         else:
             # Try as object
             obj = get_object(item_name)
             if obj:
                 set_object_visibility(obj, True)
+                set_holdout_property(obj, False)
+                print(f"    Showing object: {item_name}")
             else:
                 print(f"  Warning: Item '{item_name}' not found (neither collection nor object)")
     
-    # Set holdout for holdout items
+    # THIRD: Show holdout items and enable holdout on them
     for item_name in holdout_items:
         # Try as collection first
         collection = get_collection(item_name)
         if collection:
             set_collection_visibility(collection, True)
             set_holdout_property(collection, True)
+            print(f"    Showing as holdout: {item_name}")
         else:
             # Try as object
             obj = get_object(item_name)
             if obj:
                 set_object_visibility(obj, True)
                 set_holdout_property(obj, True)
+                print(f"    Showing object as holdout: {item_name}")
             else:
                 print(f"  Warning: Holdout item '{item_name}' not found (neither collection nor object)")
 
