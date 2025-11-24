@@ -6,12 +6,12 @@ RENDER_CONFIGS = [
     {
         "image_name": "LegRoller.png",
         "include": ["LegRoller"],
-        "holdout": ["Rack80"]
+        "holdout": ["Rack93", "15-005071 1168"]
     },
     {
         "image_name": "Shrouds93.png",
         "include": ["Shrouds93"],
-        "holdout": []
+        "holdout": ["Rack93", "15-005071 1168"]
     },
     {
         "image_name": "Shrouds80.png",
@@ -67,7 +67,18 @@ RENDER_CONFIGS = [
         "image_name": "Rack80.png",
         "include": ["Rack80", "15-005056 1168"],
         "holdout": []
+    },
+    {
+        "image_name": "Dip.png",
+        "include": ["Dip"],
+        "holdout": ["Rack80", "15-005056 1168"]
+    },
+    {
+        "image_name": "WeightHorns.png",
+        "include": ["WeightHorns80"],
+        "holdout": ["Rack80", "15-005056 1168"]
     }
+
 ]
 
 # All collections in the Racks folder
