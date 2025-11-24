@@ -113,32 +113,13 @@ def get_object(name):
     
     return None
 
-def find_layer_collection(layer_collection, target_collection):
-    """Recursively find a layer collection that matches the target collection."""
-    if layer_collection.collection == target_collection:
-        return layer_collection
-    for child in layer_collection.children:
-        result = find_layer_collection(child, target_collection)
-        if result:
-            return result
-    return None
-
-
 def set_collection_visibility(collection, visible, render_visible=True):
     """Set collection visibility for viewport and render.
-    Also recursively sets visibility on all objects in the collection.
-    Handles both collection properties and view layer instances."""
+    Also recursively sets visibility on all objects in the collection."""
     if collection:
-        # Set collection-level visibility
+        # Set collection-level visibility (this is what controls rendering)
         collection.hide_viewport = not visible
         collection.hide_render = not render_visible
-        
-        # Also set visibility in view layers (important for rendering)
-        for view_layer in bpy.context.scene.view_layers:
-            layer_collection = find_layer_collection(view_layer.layer_collection, collection)
-            if layer_collection:
-                layer_collection.hide_viewport = not visible
-                layer_collection.hide_render = not render_visible
         
         # Also set visibility on all objects in the collection
         for obj in collection.objects:
