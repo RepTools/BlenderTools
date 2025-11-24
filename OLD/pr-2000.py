@@ -113,7 +113,6 @@ def get_object(name):
     
     return None
 
-
 def set_collection_visibility(collection, visible, render_visible=True):
     """Set collection visibility for viewport and render."""
     if collection:
@@ -130,19 +129,24 @@ def set_object_visibility(obj, visible, render_visible=True):
 
 def set_holdout_property(collection_or_object, holdout_enabled):
     """Set holdout property on a collection or object.
-    Holdout is set on individual objects, not collections."""
+    Holdout is set on individual objects, not collections.
+    The is_holdout property is directly on the object."""
+    def set_obj_holdout(obj):
+        """Set holdout on a single object."""
+        if obj.type == 'MESH':
+            # Set holdout directly on the object
+            if hasattr(obj, 'is_holdout'):
+                obj.is_holdout = holdout_enabled
+    
     if isinstance(collection_or_object, bpy.types.Collection):
         # Set holdout on all objects in the collection
         for obj in collection_or_object.objects:
-            if obj.type == 'MESH':
-                obj.cycles.is_holdout = holdout_enabled
+            set_obj_holdout(obj)
         # Also check child collections
         for child_coll in collection_or_object.children:
             set_holdout_property(child_coll, holdout_enabled)
     elif isinstance(collection_or_object, bpy.types.Object):
-        # Set holdout on the object directly
-        if collection_or_object.type == 'MESH':
-            collection_or_object.cycles.is_holdout = holdout_enabled
+        set_obj_holdout(collection_or_object)
 
 
 def setup_render_config(config):
