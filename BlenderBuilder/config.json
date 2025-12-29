@@ -1,0 +1,11 @@
+{
+  "baseFile": "C:/Users/AJFrio/OneDrive - Rep Fitness/Desktop/Blender Files/TemplateV3.blend",
+  "componentFile": "C:/path/to/component/file.blend",
+  "blenderPath": "blender",
+  "spacing": 2.0,
+  "renderResolution": {
+    "width": 1920,
+    "height": 1080
+  }
+}
+

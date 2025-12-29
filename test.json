@@ -1,0 +1,527 @@
+{
+    "type": "overlay-customizer",
+    "collection_handle": "adonis",
+    "collection_handle_2": "modular-storage",
+    "style": "dropdown",
+    "heading": "Adonis + Rack",
+    "preselect": [],
+    "options": [
+      {
+        "selections": [
+          {
+            "key": "Plate-loaded",
+            "value": "Plate-loaded",
+            "label": "Plate Loaded",
+            "products": [],
+            "images": []
+          },
+          {
+            "key": "Plate-loaded + Selectorized",
+            "value": "Plate-loaded + Selectorized",
+            "label": "Selectorized",
+            "products": [],
+            "images": []
+          }
+        ],
+        "label": "Style",
+        "swatch": false
+      },
+      {
+        "selections": [
+          {
+            "key": "4000",
+            "value": "4000",
+            "label": "4000 Series",
+            "products": []
+          },
+          {
+            "key": "5000",
+            "value": "5000",
+            "label": "5000 Series",
+            "products": []
+          }
+        ],
+        "label": "Series",
+        "swatch": false
+      },
+      {
+        "selections": [
+          {
+            "key": "No Pegasus™ Attachment",
+            "value": "No Pegasus™ Attachment",
+            "label": "No",
+            "products": [],
+            "images": []
+          },
+          {
+            "key": "Pegasus™ Attachment",
+            "value": "Pegasus™ Attachment",
+            "label": "Yes",
+            "products": [],
+            "images": []
+          }
+        ],
+        "label": "Seat Attachment",
+        "swatch": false
+      },
+      {
+        "selections": [
+          {
+            "key": "Left",
+            "value": "Left",
+            "label": "Left",
+            "products": [
+              "7662398636190:<Style> / Base / <Seat Attachment>"
+            ],
+            "images": [],
+            "image_condition": {
+              "4000": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Ghost_rack_4k_left.png?v=1710859357"
+              ],
+              "5000": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_Ghost_Rack.png?v=1710424086"
+              ],
+              "Plate-loaded": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_Adonis_-_Plate-Loaded.png"
+              ],
+              "Plate-loaded + Selectorized": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_Adonis_-_Selectorized.png"
+              ],
+              "Pegasus™ Attachment": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_Seat.png"
+              ]
+            }
+          },
+          {
+            "key": "Right",
+            "value": "Right",
+            "label": "Right",
+            "products": [
+              "7662398636190:<Style> / Base / <Seat Attachment>"
+            ],
+            "images": [],
+            "image_condition": {
+              "4000": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Adonis_Ghost_4k_Right.png?v=1710869624"
+              ],
+              "5000": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_Ghost_Rack.png?v=1710424820"
+              ],
+              "Plate-loaded": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_Adonis_-_Plate-Loaded.png"
+              ],
+              "Plate-loaded + Selectorized": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_Adonis_-_Selectorized.png"
+              ],
+              "Pegasus™ Attachment": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_Seat.png"
+              ]
+            }
+          }
+        ],
+        "label": "Side Setup",
+        "swatch": false
+      },
+      {
+        "selections": [
+          {
+            "key": "1.25 Standard",
+            "value": "1.25\" Standard",
+            "label": "1.25\" Standard",
+            "products": [
+              "7039731204254:<Series>"
+            ],
+            "images": [],
+            "image_condition": {
+              "Left": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_125.png"
+              ],
+              "4000|Right": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/pull_up_bar_125.png?v=1710882571"
+              ],
+              "5000|Right": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/5k_125_right_config.png?v=1710884460"
+              ]
+            }
+          },
+          {
+            "key": "2 Standard",
+            "value": "2\" Standard",
+            "label": "2\" Standard",
+            "products": [
+              "7039727009950:<Series>"
+            ],
+            "images": [],
+            "image_condition": {
+              "Left": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_2.png"
+              ],
+              "4000|Right": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Pull_up_bar_2.png?v=1710882541"
+              ],
+              "5000|Right": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/5k_2in_Right_Config.png?v=1710883905"
+              ]
+            }
+          },
+          {
+            "key": "Multi-Grip",
+            "value": "Multi-Grip",
+            "label": "Multi-Grip",
+            "products": [
+              "7039728287902:<Series>"
+            ],
+            "images": [],
+            "image_condition": {
+              "Left": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_Multi.png"
+              ],
+              "4000|Right": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Multigrip.png?v=1710882336"
+              ],
+              "5000|Right": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/5k_Multi_right_config.png?v=1710884566"
+              ]
+            }
+          },
+          {
+            "key": "Raw 1.25",
+            "value": "Raw 1.25\"",
+            "label": "Raw 1.25\"",
+            "products": [
+              "7118438105246:<Series>"
+            ],
+            "images": [],
+            "image_condition": {
+              "Left": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_125.png"
+              ],
+              "4000|Right": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/pull_up_bar_125.png?v=1710882571"
+              ],
+              "5000|Right": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/5k_125_right_config.png?v=1710884460"
+              ]
+            }
+          }
+        ],
+        "label": "Pull-up Bar",
+        "swatch": false
+      },
+      {
+        "selections": [
+          {
+            "key": "Crossmember",
+            "value": "Crossmember",
+            "label": "Crossmember",
+            "products": [],
+            "images": [],
+            "image_condition": {}
+          },
+          {
+            "key": "LPC",
+            "value": "LPC",
+            "label": "LPC",
+            "products": [],
+            "images": [],
+            "image_condition": {}
+          }
+        ],
+        "label": "Crossmember",
+        "swatch": false
+      },
+      {
+        "selections": [
+          {
+            "key": "1.0",
+            "value": "1.0",
+            "label": "LPC",
+            "products": [],
+            "images": [],
+            "product_condition": {
+              "4000": [
+                "7713917862046:Logo Plate Crossmember / Logo Plate Crossmember",
+                "7713917862046:Rear Base Stabilizer 2.0 / Rear Base Stabilizer 2.0"
+              ],
+              "5000": [
+                "7039731237022:<Series>",
+                "7039727796382:<Series>"
+              ]
+            },
+            "image_condition": {
+              "4000|Left|LPC": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_Left_4K_2.0.png?v=1710528058",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_2.0.png"
+              ],
+              "5000|Left|LPC": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Large1_Configuration_Left_Sel_LPC2Large.png?v=1710788152",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_2.0.png"
+              ],
+              "4000|Right|LPC": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_Right_4K_2.0.png?v=1710528058",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_2.0.png"
+              ],
+              "5000|Right|LPC": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Large1_Configuration_Right_Sel_LPC2Large.png?v=1710788168",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_2.0.png"
+              ]
+            },
+            "image_position": "prepend"
+          },
+          {
+            "key": "2.0",
+            "value": "2.0",
+            "label": "Compact LPC",
+            "products": [
+              "7118811758750:Default Title",
+              "7039727796382:<Series>"
+            ],
+            "images": [],
+            "image_condition": {
+              "4000|Left|LPC": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_2.0.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_2.0.png"
+              ],
+              "5000|Left|LPC": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_2.0.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_2.0.png"
+              ],
+              "4000|Right|LPC": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_2.0.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_2.0.png"
+              ],
+              "5000|Right|LPC": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_LPC_2.0.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_2.0.png"
+              ]
+            },
+            "image_position": "prepend",
+            "hide": [
+              {
+                "Series": "4000"
+              }
+            ]
+          }
+        ],
+        "hide": [
+          {
+            "Crossmember": "Crossmember"
+          }
+        ],
+        "label": "LPC",
+        "swatch": false
+      },
+      {
+        "selections": [
+          {
+            "key": "Metallic Black",
+            "value": "Metallic Black",
+            "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/metallic-black.png?v=1649107538",
+            "products": [],
+            "images": [],
+            "product_condition": {
+              "4000": [
+                "7713917862046:Crossmember / Metallic Black"
+              ],
+              "5000": [
+                "7206477168798:Pair / 41\" / Metallic Black"
+              ]
+            },
+            "image_condition": {
+              "4000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_-_Black.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_-_Black.png"
+              ],
+              "5000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_-_Black.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_-_Black.png"
+              ],
+              "4000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_Black.png?v=1710870852",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_-_Black.png"
+              ],
+              "5000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_Black.png?v=1710870852",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_-_Black.png"
+              ]
+            },
+            "image_position": "prepend"
+          },
+          {
+            "key": "Red",
+            "value": "Red",
+            "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/red.png?v=1649107538",
+            "products": [],
+            "product_condition": {
+              "4000": [
+                "7713917862046:Crossmember / Red"
+              ],
+              "5000": [
+                "7206477168798:Pair / 41\" / Red"
+              ]
+            },
+            "images": [],
+            "image_condition": {
+              "4000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_-_Red.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_-_Red.png"
+              ],
+              "5000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_-_Red.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_-_Red.png"
+              ],
+              "4000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_Red.png?v=1710871028",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_-_Red.png"
+              ],
+              "5000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_Red.png?v=1710871028",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_-_Red.png"
+              ]
+            },
+            "image_position": "prepend"
+          },
+          {
+            "key": "Blue",
+            "value": "Blue",
+            "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/blue.png?v=1649107538",
+            "products": [],
+            "product_condition": {
+              "4000": [
+                "7713917862046:Crossmember / Blue"
+              ],
+              "5000": [
+                "7206477168798:Pair / 41\" / Blue"
+              ]
+            },
+            "image_condition": {
+              "4000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_-_Blue.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_-_Blue.png"
+              ],
+              "5000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_-_Blue.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_-_Blue.png"
+              ],
+              "4000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_Blue.png?v=1710871062",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_-_Blue.png"
+              ],
+              "5000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_Blue.png?v=1710871062",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_-_Blue.png"
+              ]
+            },
+            "image_position": "prepend"
+          },
+          {
+            "key": "White",
+            "value": "White",
+            "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/white.png?v=1649107538",
+            "products": [],
+            "product_condition": {
+              "4000": [
+                "7713917862046:Crossmember / White"
+              ],
+              "5000": [
+                "7206477168798:Pair / 41\" / White"
+              ]
+            },
+            "image_condition": {
+              "4000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_-_White.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_-_White.png"
+              ],
+              "5000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_-_White.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_-_White.png"
+              ],
+              "4000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_White.png?v=1710871096",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_-_White.png"
+              ],
+              "5000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_White.png?v=1710871096",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_-_White.png"
+              ]
+            },
+            "image_position": "prepend"
+          },
+          {
+            "key": "Clear Coat",
+            "value": "Clear Coat",
+            "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/clear-coat.png?v=1662754119",
+            "products": [],
+            "product_condition": {
+              "4000": [
+                "7713917862046:Crossmember / Clear Coat"
+              ],
+              "5000": [
+                "7206477168798:Pair / 41\" / Clear Coat"
+              ]
+            },
+            "image_condition": {
+              "4000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/ClearCoat_5k_left_top.png?v=1710954184",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/ClearCoat_5k_left_bottom.png?v=1710954179"
+              ],
+              "5000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/ClearCoat_5k_left_top.png?v=1710954184",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/ClearCoat_5k_left_bottom.png?v=1710954179"
+              ],
+              "4000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_SS.png?v=1710951631",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Clear_Coat_bottom_5k_right.png?v=1710953992"
+              ],
+              "5000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_SS.png?v=1710951631",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Clear_Coat_bottom_5k_right.png?v=1710953992"
+              ]
+            },
+            "image_position": "prepend"
+          },
+          {
+            "key": "Matte Black",
+            "value": "Matte Black",
+            "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/matte-black.png?v=1649107538",
+            "products": [],
+            "product_condition": {
+              "4000": [
+                "7713917862046:Crossmember / Matte Black"
+              ],
+              "5000": [
+                "7206477168798:Pair / 41\" / Matte Black"
+              ]
+            },
+            "image_condition": {
+              "4000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_-_Mat.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_-_Mat.png"
+              ],
+              "5000|Left|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_LPC_-_Mat.png",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Left_-_RBS_-_Mat.png"
+              ],
+              "4000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_Mat.png?v=1710871136",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_-_Mat.png"
+              ],
+              "5000|Right|Crossmember": [
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LPC_Mat.png?v=1710871136",
+                "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Right_-_RBS_-_Mat.png"
+              ]
+            },
+            "image_position": "prepend"
+          }
+        ],
+        "image_position": "First",
+        "label": "Color",
+        "swatch": true,
+        "hide": [
+          {
+            "Crossmember": "LPC"
+          }
+        ]
+      }
+    ]
+  }
