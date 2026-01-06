@@ -51,22 +51,22 @@ RENDER_CONFIGS = [
     {
         "image_name": "CableMachine93.png",
         "include": ["CableMachine93"],
-        "holdout": ["Rack93"]
+        "holdout": ["Rack93", "15-005071 1168"]
     },
     {
         "image_name": "CableMachine93withSmith.png",
         "include": ["CableMachine93"],
-        "holdout": ["Rack93","SmithMachine93"]
+        "holdout": ["Rack93","SmithMachine93", "15-005071 1168"]
     },
     {
         "image_name": "CableMachine80.png",
         "include": ["CableMachine80"],
-        "holdout": ["Rack80"]
+        "holdout": ["Rack80", "15-005056 1168"]
     },
     {
         "image_name": "CableMachine80withSmith.png",
         "include": ["CableMachine80"],
-        "holdout": ["Rack80","SmithMachine80"]
+        "holdout": ["Rack80","SmithMachine80", "15-005056 1168"]
     },
     {
         "image_name": "Rack93.png",

@@ -1,0 +1,387 @@
+{
+    "type": "overlay-customizer",
+    "collection_handle": "altitude-power-rack-and-attachments",
+    "collection_handle_2": "altitude-power-rack-attachments",
+    "style": "dropdown",
+    "heading": "Altitude™ Power Rack",
+    "preselect": [],
+    "options": [
+        {
+            "selections": [
+                {
+                    "key": "Rack + Smith Machine + Cable Attachment",
+                    "value": "Rack + Smith Machine + Cable Attachment",
+                    "label": "Rack + Smith Machine + Cable Attachment",
+                    "products": [],
+                    "images": [],
+                    "product_condition": {
+                        "90 inch": [
+                            "14901793816942:90\" / <Color>",
+                            "14899724976494:90\"",
+                            "14887838187886:90\""
+                        ],
+                        "83 inch": [
+                            "14901793816942:83\" / <Color>",
+                            "14899724976494:83\"",
+                            "14887838187886:83\""
+                        ]
+                    },
+                    "image_condition": {
+                        "90 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/SmithMachine93_1f21307c-1456-4112-beb6-4ef7454677c3.png?v=1764707306",
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/CableMachine93withSmith_760f3e5f-9f2c-4f7b-bc97-68fe02e5372c.png?v=1767208361"
+                        ],
+                        "83 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/SmithMachine80_617f968d-a014-4715-aab8-4856b8d8948a.png?v=1764707306",
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/CableMachine80withSmith_4bd0832f-bd57-40c2-9e77-e734f24dd593.png?v=1767208459"
+                        ]
+                    }
+                },
+                {
+                    "key": "Rack",
+                    "value": "Rack",
+                    "label": "Rack",
+                    "products": [],
+                    "images": [],
+                    "product_condition": {
+                        "90 inch": [
+                            "14901793816942:90\" / <Color>"
+                        ],
+                        "83 inch": [
+                            "14901793816942:83\" / <Color>"
+                        ]
+                    }
+                },
+                {
+                    "key": "Rack + Smith Machine",
+                    "value": "Rack + Smith Machine",
+                    "label": "Rack + Smith Machine",
+                    "products": [],
+                    "images": [],
+                    "product_condition": {
+                        "90 inch": [
+                            "14901793816942:90\" / <Color>",
+                            "14899724976494:90\""
+                        ],
+                        "83 inch": [
+                            "14901793816942:83\" / <Color>",
+                            "14899724976494:83\""
+                        ]
+                    },
+                    "image_condition": {
+                        "90 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/SmithMachine93_1f21307c-1456-4112-beb6-4ef7454677c3.png?v=1764707306"
+                        ],
+                        "83 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/SmithMachine80_617f968d-a014-4715-aab8-4856b8d8948a.png?v=1764707306"
+                        ]
+                    }
+                },
+                {
+                    "key": "Rack + Cable Attachment",
+                    "value": "Rack + Cable Attachment",
+                    "label": "Rack + Cable Attachment",
+                    "products": [],
+                    "images": [],
+                    "product_condition": {
+                        "90 inch": [
+                            "14901793816942:90\" / <Color>",
+                            "14887838187886:90\""
+                        ],
+                        "83 inch": [
+                            "14901793816942:83\" / <Color>",
+                            "14887838187886:83\""
+                        ]
+                    },
+                    "image_condition": {
+                        "90 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Cable90New.png?v=1765924456"
+                        ],
+                        "83 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Cable83New2.png?v=1765928398"
+                        ]
+                    }
+                }
+            ],
+            "label": "Rack Configuration",
+            "swatch": false
+        },
+        {
+            "selections": [
+                {
+                    "key": "90 inch",
+                    "value": "90 inch",
+                    "label": "90 inch",
+                    "products": [],
+                    "images": []
+                },
+                {
+                    "key": "83 inch",
+                    "value": "83 inch",
+                    "label": "83 inch",
+                    "products": [],
+                    "images": []
+                }
+            ],
+            "label": "Height",
+            "swatch": false
+        },
+        {
+            "selections": [
+                {
+                    "key": "Metallic Black",
+                    "value": "Metallic Black",
+                    "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/metallic-black.png?v=1649107538",
+                    "products": [],
+                    "images": [],
+                    "image_condition": {
+                        "90 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/MetallicBlackRack93_c69369cd-9633-46ce-a80f-56fe7f72d5fc.png?v=1764804516"
+                        ],
+                        "83 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/MetallicBlackRack80_6a06c6fb-ebc6-4024-bdb6-ec397636d54e.png?v=1764804516"
+                        ]
+                    },
+                    "image_position": "prepend"
+                },
+                {
+                    "key": "Stainless Steel",
+                    "value": "Stainless Steel",
+                    "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/stainless-steel.png?v=1685712747",
+                    "products": [],
+                    "images": [],
+                    "image_condition": {
+                        "90 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/MetallicBlackRack93.png?v=1764714690"
+                        ],
+                        "83 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/MetallicBlackRack80.png?v=1764714200"
+                        ]
+                    },
+                    "image_position": "prepend"
+                },
+                {
+                    "key": "Red",
+                    "value": "Red",
+                    "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/red.png?v=1649107538",
+                    "products": [],
+                    "images": [],
+                    "image_condition": {
+                        "90 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/RedRack93_1e055894-2a9c-418f-9f83-2dd01cb78b9e.png?v=1764804516"
+                        ],
+                        "83 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/RedRack80_c4c32952-3448-4db9-bb58-2a56520ef8d5.png?v=1764804516"
+                        ]
+                    },
+                    "image_position": "prepend"
+                },
+                {
+                    "key": "Blue",
+                    "value": "Blue",
+                    "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/blue.png?v=1649107538",
+                    "products": [],
+                    "images": [],
+                    "image_condition": {
+                        "90 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Blue90New.png?v=1765924456"
+                        ],
+                        "83 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Blue83New.png?v=1765924456"
+                        ]
+                    },
+                    "image_position": "prepend"
+                },
+                {
+                    "key": "White",
+                    "value": "White",
+                    "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/white.png?v=1649107538",
+                    "products": [],
+                    "images": [],
+                    "image_condition": {
+                        "90 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/whiteRack93_51363c8e-485c-4f75-921c-1eaac5eeee4a.png?v=1764804516"
+                        ],
+                        "83 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/whiteRack80_155385d1-3ccd-48af-a62c-0f4e4e5ab96c.png?v=1764804515"
+                        ]
+                    },
+                    "image_position": "prepend"
+                },
+                {
+                    "key": "Matte Black",
+                    "value": "Matte Black",
+                    "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/matte-black.png?v=1649107538",
+                    "products": [],
+                    "images": [],
+                    "image_condition": {
+                        "90 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/MatteBlackRack93_f66d357f-d32e-468a-a865-01909a35fd67.png?v=1764804516"
+                        ],
+                        "83 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/MatteBlackRack80_b28f8af8-5ee2-4a79-a52d-f7e1f6c67827.png?v=1764804517"
+                        ]
+                    },
+                    "image_position": "prepend"
+                },
+                {
+                    "key": "Olive",
+                    "value": "Olive",
+                    "swatch": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/army-green.png?v=1662828497",
+                    "products": [],
+                    "images": [],
+                    "image_condition": {
+                        "90 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Green90New.png?v=1765924456"
+                        ],
+                        "83 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Green83New.png?v=1765924456"
+                        ]
+                    },
+                    "image_position": "prepend"
+                }
+            ],
+            "label": "Color",
+            "swatch": true
+        },
+        {
+            "selections": [
+                {
+                    "key": "No",
+                    "value": "No",
+                    "label": "No",
+                    "products": [],
+                    "images": []
+                },
+                {
+                    "key": "Yes",
+                    "value": "Yes",
+                    "label": "Yes",
+                    "products": [
+                        "14901728018798:Default Title"
+                    ],
+                    "images": []
+                }
+            ],
+            "label": "Weight Stack Upgrade",
+            "swatch": false,
+            "hide": [
+                {
+                    "Rack Configuration": "Rack"
+                },
+                {
+                    "Rack Configuration": "Rack + Smith Machine"
+                }
+            ]
+        },
+        {
+            "selections": [
+                {
+                    "key": "No",
+                    "value": "No",
+                    "label": "No",
+                    "products": [],
+                    "images": []
+                },
+                {
+                    "key": "Yes",
+                    "value": "Yes",
+                    "label": "Yes",
+                    "products": [],
+                    "images": [],
+                    "product_condition": {
+                        "90 inch": [
+                            "14901729231214:90\""
+                        ],
+                        "83 inch": [
+                            "14901729231214:83\""
+                        ]
+                    },
+                    "image_condition": {
+                        "90 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Shrouds93_61ad2a96-e532-4d2c-946f-4346cb2981ef.png?v=1764714200"
+                        ],
+                        "83 inch": [
+                            "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Shrouds80_595f8e9e-9b10-4603-b521-44692a502b54.png?v=1764714200"
+                        ]
+                    }
+                }
+            ],
+            "label": "Shrouds",
+            "swatch": false,
+            "hide": [
+                {
+                    "Rack Configuration": "Rack"
+                },
+                {
+                    "Rack Configuration": "Rack + Smith Machine"
+                }
+            ]
+        },
+        {
+            "selections": [
+                {
+                    "key": "Dip Attachment",
+                    "value": "Dip Attachment",
+                    "label": "Dip Attachment",
+                    "products": [
+                        "14901733556590:Default Title"
+                    ],
+                    "images": [
+                        "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Dip_63d6adb1-212f-4d81-b476-35908161c4bf.png?v=1764707304"
+                    ]
+                },
+                {
+                    "key": "Kleva Landmine Attachment",
+                    "value": "Kleva Landmine Attachment",
+                    "label": "Kleva Landmine Attachment",
+                    "products": [
+                        "14779411169646:Rack-Mounted"
+                    ],
+                    "images": []
+                }
+            ],
+            "label": "Attachments",
+            "swatch": false,
+            "multiselect": true
+        }
+    ],
+    "_archived_selections": {
+        "note": "These selections are archived and not parsed. Keep for easy restoration if needed.",
+        "selections": [
+            {
+                "key": "Standard J-Cups",
+                "value": "Standard J-Cups",
+                "label": "Standard J-Cups",
+                "products": [
+                    "14886960365934:Standard"
+                ],
+                "images": [
+                    "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Jcups2_12ab97ce-281a-47e7-b8a8-ac02cece610c.png?v=1764707304"
+                ]
+            },
+            {
+                "key": "Leg Roller",
+                "value": "Leg Roller",
+                "label": "Leg Roller",
+                "products": [
+                    "14901754233198:Default Title"
+                ],
+                "images": [
+                    "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/LegRoller_e79e8043-abda-4509-ba1d-8c7a7f483a03.png?v=1764707304"
+                ]
+            },
+            {
+                "key": "Strap Safeties",
+                "value": "Strap Safeties",
+                "label": "Strap Safeties",
+                "products": [
+                    "14901731950958:Default Title"
+                ],
+                "images": [
+                    "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/StrapSafeties_5756f429-3ca5-421b-b998-66b149f679a8.png?v=1764707304"
+                ]
+            }
+        ]
+    }
+}
