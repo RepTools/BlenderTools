@@ -1,3 +1,13 @@
+bl_info = {
+    "name": "Decimate",
+    "author": "AJ Frio",
+    "version": (1, 0),
+    "blender": (4, 2, 0),
+    "location": "Properties > World > Decimate",
+    "description": "Decimate and simplify the Model collection (swap in primitives, remove hardware, cleanup naming)",
+    "category": "Object",
+}
+
 import bpy
 from mathutils import Vector
 from math import radians
@@ -17,7 +27,7 @@ delete_list = ['10-0360', '10-0370', '10-0171', '15-0369']
 
 washers_nuts.extend(stupid_parts)
 
-collection = bpy.data.collections.get(col)
+collection = None
 
 debug_mode = True
 
@@ -346,4 +356,44 @@ def decimate():
     for obj in collection.objects:
         rename_objects(obj)
 
-decimate()
+
+class WORLD_OT_decimate(bpy.types.Operator):
+    bl_idname = "world.run_decimate"
+    bl_label = "Decimate"
+    bl_description = "Run the decimate/cleanup pass on the Model collection"
+
+    def execute(self, context):
+        global collection
+        collection = bpy.data.collections.get(col)
+        if not collection:
+            self.report({'ERROR'}, f"Collection '{col}' not found")
+            return {'CANCELLED'}
+        decimate()
+        self.report({'INFO'}, f"Decimate complete on collection '{col}'")
+        return {'FINISHED'}
+
+
+class WORLD_PT_decimate_panel(bpy.types.Panel):
+    bl_label = "Decimate"
+    bl_idname = "WORLD_PT_decimate"
+    bl_space_type = 'PROPERTIES'
+    bl_region_type = 'WINDOW'
+    bl_context = "world"
+
+    def draw(self, context):
+        layout = self.layout
+        layout.operator("world.run_decimate", icon='MOD_DECIM')
+
+
+classes = (WORLD_OT_decimate, WORLD_PT_decimate_panel)
+
+def register():
+    for cls in classes:
+        bpy.utils.register_class(cls)
+
+def unregister():
+    for cls in reversed(classes):
+        bpy.utils.unregister_class(cls)
+
+if __name__ == "__main__":
+    register()

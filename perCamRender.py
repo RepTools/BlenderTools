@@ -1,3 +1,13 @@
+bl_info = {
+    "name": "Per Cam Render",
+    "author": "AJ Frio",
+    "version": (1, 0),
+    "blender": (4, 2, 0),
+    "location": "Properties > Render > Per Cam Render",
+    "description": "Render the scene from every camera in the file to individual PNGs",
+    "category": "Render",
+}
+
 import bpy
 import os
 
@@ -34,4 +44,39 @@ def render_from_all_cameras(output_path):
     scene.camera = original_camera
 
 
-render_from_all_cameras(output_path)
+
+class RENDER_OT_per_cam_render(bpy.types.Operator):
+    bl_idname = "render.per_cam_render"
+    bl_label = "Render"
+    bl_description = "Render the scene from every camera to individual PNG files"
+
+    def execute(self, context):
+        render_from_all_cameras(output_path)
+        self.report({'INFO'}, f"Rendered all cameras to {output_path}")
+        return {'FINISHED'}
+
+
+class RENDER_PT_per_cam_render_panel(bpy.types.Panel):
+    bl_label = "Per Cam Render"
+    bl_idname = "RENDER_PT_per_cam_render"
+    bl_space_type = 'PROPERTIES'
+    bl_region_type = 'WINDOW'
+    bl_context = "render"
+
+    def draw(self, context):
+        layout = self.layout
+        layout.operator("render.per_cam_render", icon='RENDER_STILL')
+
+
+classes = (RENDER_OT_per_cam_render, RENDER_PT_per_cam_render_panel)
+
+def register():
+    for cls in classes:
+        bpy.utils.register_class(cls)
+
+def unregister():
+    for cls in reversed(classes):
+        bpy.utils.unregister_class(cls)
+
+if __name__ == "__main__":
+    register()
